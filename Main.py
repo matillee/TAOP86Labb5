@@ -1,21 +1,24 @@
+#TAOP86
+#Matilda Engstroem Ericsson, Emily Berghaell
+
 import numpy as np
 import time
 import sys
 import copy
 
-e=1
+e=1 #diskonteringsfaktor
 
 prob=" ".join(sys.argv[1:]).split('.')[0]
 fil=prob+'.npz'
 
-npzfile = np.load(fil)
+npzfile = np.load("extrdata/floc3.npz") #den kan ladda!
 npzfile.files
-m=npzfile['m']
-n=npzfile['n']
-s=npzfile['s']
-d=npzfile['d']
-f=npzfile['f']
-c=npzfile['c']
+m=npzfile['m'] #antal mojliga platser for lokalisering av anlaggning/fabrik
+n=npzfile['n'] #antal kunder
+s=npzfile['s'] #kapacitet hos anlaggning i
+d=npzfile['d'] #efterfragan hos kund j
+f=npzfile['f'] #fasta kostnader att oppna anlaggning pa plats i
+c=npzfile['c'] #transportkostnad per enhet till kund j fran plats i
 #print 'm:',m,' n:',n
 #print 's:',s
 #print 'd:',d
@@ -28,12 +31,38 @@ y=np.zeros((m),dtype=np.int)
 
 ss=copy.deepcopy(s)
 dd=copy.deepcopy(d)
+ff=copy.deepcopy(f)
 
-while sum(dd)>0:
+    #Vi bestammer att vi vill hitta den dyraste fabriken forst
+    #Vi vill ocksa ta den kund med hogst efterfragan
+
+    #Vi vill alltsa sortera dd och ff sa storsta elementet ar forst.
+
+sorted(dd, reverse=True)
+sorted(ff, reverse=True)
+
+
+print(dd)
+print(ff)
+
+# sedan vill hitta samma element i riktiga d i och f. Hitta index for dessa.
+
+storst_kund = d.index(dd[0])
+dyrast_fabrik = f.index(ff[0])
+
+print(storst_kund)
+print(dyrast_fabrik)
+
+#while sum(dd)>0:
     # find facility, find customer, send, at min cost
     # set x and y
     # deduct from ss and dd,
     # --------
+
+
+
+    #
+
 
 
 
