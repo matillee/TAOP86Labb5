@@ -117,23 +117,6 @@ while sum(c_efterfragan_kund)>0:
 
 
 print("All efterfragan uppfylld!")
-#transport_kostnad = cc.item(index_fabrik, index_kund)
-#fast_kostnad = ff.item(index_fabrik)
-
-#total_kostnad = transport_kostnad + fast_kostnad
-
-#print("Transport kostnad: ", transport_kostnad)
-#print("Fast kostnad: ", fast_kostnad)
-
-#transport_kostnad = 0
-#fast_kostnad = 0
-#ff = np.delete(ff, index_fabrik)
-#print("ff: ", ff)
-
-    #
-
-
-
 
 elapsed = time.time() - t1
 print('Tid: '+ str('%.4f' % elapsed))
@@ -142,19 +125,3 @@ cost= sum(sum(np.multiply(transportkostnad, x))) + e * np.dot(kostnad_fabrik, y)
 print( 'Problem:',prob,' Totalkostnad: '+str(cost))
 print( 'y:',y)
 print('Antal byggda fabriker: (', sum(y),'av', mojliga_fabriker, ')')
-
-
-# Om kundens efterfragan uppfylls, return True
-# Om inte, och ny fabtik behover byggas, return False
-def transport_mangd(kapacitet, onskad_mangd):
-    if (kapacitet >= onskad_mangd):
-        transporterad_mangd = onskad_mangd
-        kapacitet = kapacitet - onskad_mangd
-        onskad_mangd = 0
-        # fortsatt till nasta kund
-        return transporterad_mangd
-    else:
-        transporterad_mangd = kapacitet
-        onskad_mangd = onskad_mangd - kapacitet
-        # fortsatt till nasta fabrik
-        return transporterad_mangd
